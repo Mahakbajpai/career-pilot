@@ -1,3 +1,11 @@
+# [1.16.0](https://github.com/anurag3407/career-pilot/compare/v1.15.0...v1.16.0) (2026-05-26)
+
+
+### Features
+
+* **portfolio:** implement SubmarineSonar component for Deep Ocean theme ([ca3cd94](https://github.com/anurag3407/career-pilot/commit/ca3cd940c1aa15b01fc9aeefd123c37419879418))
+* **portfolio:** link submarine sonar UI button to open GitHub PR page ([023b0be](https://github.com/anurag3407/career-pilot/commit/023b0bea13f7128f50bbc68e4aa9de4da52e2da5))
+
 # [1.15.0](https://github.com/anurag3407/career-pilot/compare/v1.14.1...v1.15.0) (2026-05-26)
 
 
