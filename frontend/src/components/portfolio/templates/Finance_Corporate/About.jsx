@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, {userId} from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { User, LineChart, Shield, Brain, Code2, Target } from "lucide-react";
 
 const skills = [
@@ -41,6 +41,8 @@ const item = {
 };
 
 export default function About() {
+  const gradientId = userId();
+  const prefersReducedMotion = useReducedMotion();
   return (
     <section className="relative w-full bg-gray-950 text-white py-24 px-6 md:px-16 overflow-hidden">
       {/* 📈 Moving Chart Background */}
@@ -48,19 +50,17 @@ export default function About() {
         <motion.svg className="w-full h-full">
           <motion.path
             d="M0,200 Q120,120 240,180 T480,160 T720,200 T960,140"
-            stroke="url(#grad)"
+            stroke="url(#${gradientId})"
             strokeWidth="2"
             fill="transparent"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+            initial={prefersReducedMotion ? false : { pathLength: 0 }}
+            animate={prefersReducedMotion ? { pathLength: 1 } : { pathLength: 1 }}
+           transition={
+             prefersReducedMotion ? { duration: 0 } : { duration: 5, repeat: Infinity, ease: "easeInOut" }
+          }
           />
           <defs>
-            <linearGradient id="grad">
+            <linearGradient id={gradientId}>
               <stop offset="0%" stopColor="#10b981" />
               <stop offset="100%" stopColor="#3b82f6" />
             </linearGradient>
@@ -69,8 +69,8 @@ export default function About() {
       </div>
 
       {/* glow */}
-      <div className="absolute top-24 left-10 w-72 h-72 bg-emerald-500/10 blur-3xl rounded-full animate-pulse" />
-      <div className="absolute bottom-10 right-10 w-72 h-72 bg-blue-500/10 blur-3xl rounded-full animate-pulse" />
+      <div className="absolute top-24 left-10 w-72 h-72 bg-emerald-500/10 blur-3xl rounded-full motion-safe:animate-pulse" />
+      <div className="absolute bottom-10 right-10 w-72 h-72 bg-blue-500/10 blur-3xl rounded-full motion-safe:animate-pulse" />
 
       <div className="relative max-w-6xl mx-auto">
         {/* HEADER */}
