@@ -37,9 +37,12 @@ function Hero() {
       >
         {/* Left */}
         <motion.div variants={fadeUp}>
+          {/* FIX 1: Safe fallback for availability key */}
           <GlassCard className="inline-flex items-center gap-2 px-4 py-2 mb-6">
             <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-white/80 text-sm">{data.personal.availability}</span>
+            <span className="text-white/80 text-sm">
+              {data.personal.availability ?? "Open to work"}
+            </span>
           </GlassCard>
 
           <h1 className="text-5xl md:text-6xl font-black text-white leading-tight mb-4">
@@ -53,11 +56,16 @@ function Hero() {
           <p className="text-white/50 text-sm mb-2 flex items-center gap-1">
             <MapPin size={14} /> {data.personal.location}
           </p>
-          <p className="text-white/60 leading-relaxed mb-8">{data.personal.shortBio}</p>
+
+          {/* FIX 2: Safe fallback for shortBio — falls back to bio */}
+          <p className="text-white/60 leading-relaxed mb-8">
+            {data.personal.shortBio ?? data.personal.bio}
+          </p>
 
           <div className="flex flex-wrap gap-3">
+            {/* FIX 3: Safe fallback for resumeUrl */}
             <a
-              href={data.personal.resumeUrl}
+              href={data.personal.resumeUrl ?? "#"}
               className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/20 hover:bg-white/30 border border-white/30 text-white font-medium text-sm backdrop-blur-sm transition-all"
             >
               <Download size={16} /> Download CV
@@ -73,16 +81,17 @@ function Hero() {
           {/* Socials */}
           <div className="flex gap-4 mt-6">
             {[
-              { icon: <Github size={18} />, href: data.socials.github },
-              { icon: <Linkedin size={18} />, href: data.socials.linkedin },
-              { icon: <Twitter size={18} />, href: data.socials.twitter },
-              { icon: <Globe size={18} />, href: data.socials.website },
-            ].map(({ icon, href }, i) => (
+              { icon: <Github size={18} />, href: data.socials.github, label: "GitHub" },
+              { icon: <Linkedin size={18} />, href: data.socials.linkedin, label: "LinkedIn" },
+              { icon: <Twitter size={18} />, href: data.socials.twitter, label: "Twitter" },
+              { icon: <Globe size={18} />, href: data.socials.website, label: "Website" },
+            ].map(({ icon, href, label }) => (
               <a
-                key={i}
+                key={label}
                 href={href}
                 target="_blank"
                 rel="noreferrer"
+                aria-label={label}
                 className="w-10 h-10 flex items-center justify-center rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white/70 hover:text-white transition-all"
               >
                 {icon}
@@ -156,7 +165,7 @@ function About() {
                 {[
                   { label: "Email", value: data.socials.email, icon: <Mail size={14} /> },
                   { label: "GitHub", value: data.socials.github, icon: <Github size={14} /> },
-                { label: "Website", value: data.socials.website, icon: <Globe size={14} /> },
+                  { label: "Website", value: data.socials.website, icon: <Globe size={14} /> },
                 ].map(({ label, value, icon }) => (
                   <div key={label} className="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10">
                     <span className="text-cyan-400">{icon}</span>
@@ -245,7 +254,7 @@ function Projects() {
         </motion.div>
 
         <motion.div variants={stagger} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-         {(data.projects || []).map((project, index) => (
+          {(data.projects || []).map((project, index) => (
             <motion.div key={index} variants={fadeUp}>
               <GlassCard className="overflow-hidden h-full flex flex-col">
                 <div className="relative overflow-hidden">
@@ -313,7 +322,7 @@ function Experience() {
           <div className="absolute left-4 top-0 bottom-0 w-px bg-white/10 hidden md:block" />
 
           <motion.div variants={stagger} className="space-y-6">
-           {(data.experience || []).map((exp, index) => (
+            {(data.experience || []).map((exp, index) => (
               <motion.div key={index} variants={fadeUp} className="md:pl-12 relative">
                 {/* Dot */}
                 <div className="absolute left-2.5 top-6 w-3 h-3 rounded-full bg-cyan-400 border-2 border-white/20 hidden md:block" />
@@ -363,7 +372,7 @@ function Testimonials() {
         </motion.div>
 
         <motion.div variants={stagger} className="grid grid-cols-1 md:grid-cols-3 gap-6">
-         {(data.testimonials || []).map((t, index) => (
+          {(data.testimonials || []).map((t, index) => (
             <motion.div key={index} variants={fadeUp}>
               <GlassCard className="p-6 h-full flex flex-col">
                 <div className="text-cyan-400 text-3xl mb-3">"</div>
@@ -411,23 +420,36 @@ function Contact() {
         <motion.div variants={fadeUp}>
           <GlassCard className="p-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-              <input
-                type="text"
-                placeholder="Your Name"
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/30 text-sm focus:outline-none focus:border-cyan-400/60 backdrop-blur-sm transition-all"
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/30 text-sm focus:outline-none focus:border-cyan-400/60 backdrop-blur-sm transition-all"
-              />
+              {/* FIX 4: Added accessible labels to all form inputs */}
+              <div>
+                <label htmlFor="contact-name" className="sr-only">Your Name</label>
+                <input
+                  id="contact-name"
+                  type="text"
+                  placeholder="Your Name"
+                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/30 text-sm focus:outline-none focus:border-cyan-400/60 backdrop-blur-sm transition-all"
+                />
+              </div>
+              <div>
+                <label htmlFor="contact-email" className="sr-only">Your Email</label>
+                <input
+                  id="contact-email"
+                  type="email"
+                  placeholder="Your Email"
+                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/30 text-sm focus:outline-none focus:border-cyan-400/60 backdrop-blur-sm transition-all"
+                />
+              </div>
             </div>
+            <label htmlFor="contact-subject" className="sr-only">Subject</label>
             <input
+              id="contact-subject"
               type="text"
               placeholder="Subject"
               className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/30 text-sm focus:outline-none focus:border-cyan-400/60 backdrop-blur-sm transition-all mb-4"
             />
+            <label htmlFor="contact-message" className="sr-only">Your Message</label>
             <textarea
+              id="contact-message"
               rows={4}
               placeholder="Your Message"
               className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/30 text-sm focus:outline-none focus:border-cyan-400/60 backdrop-blur-sm transition-all mb-4 resize-none"
@@ -441,23 +463,28 @@ function Contact() {
         {/* Social footer */}
         <motion.div variants={fadeUp} className="flex justify-center gap-4 mt-8">
           {[
-            { icon: <Github size={18} />, href: data.socials.github },
-            { icon: <Linkedin size={18} />, href: data.socials.linkedin },
-            { icon: <Twitter size={18} />, href: data.socials.twitter },
-            { icon: <Mail size={18} />, href: `mailto:${data.socials.email}` },
-          ].map(({ icon, href }, i) => (
+            { icon: <Github size={18} />, href: data.socials.github, label: "GitHub" },
+            { icon: <Linkedin size={18} />, href: data.socials.linkedin, label: "LinkedIn" },
+            { icon: <Twitter size={18} />, href: data.socials.twitter, label: "Twitter" },
+            { icon: <Mail size={18} />, href: `mailto:${data.socials.email}`, label: "Email" },
+          ].map(({ icon, href, label }) => (
             <a
-              key={i}
+              key={label}
               href={href}
               target="_blank"
               rel="noreferrer"
+              aria-label={label}
               className="w-10 h-10 flex items-center justify-center rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white/60 hover:text-white transition-all"
             >
               {icon}
             </a>
           ))}
         </motion.div>
-        <p className="text-white/30 text-xs mt-6">© 2025 {data.personal.name}. All rights reserved.</p>
+
+        {/* FIX 5: Dynamic copyright year instead of hardcoded 2025 */}
+        <p className="text-white/30 text-xs mt-6">
+          © {new Date().getFullYear()} {data.personal.name}. All rights reserved.
+        </p>
       </motion.div>
     </section>
   );
