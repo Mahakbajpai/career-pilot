@@ -380,9 +380,10 @@ export default function FigmaCanvas() {
     });
     const contentW = maxX - minX + 200;
     const contentH = maxY - minY + 200;
+    if (rect.width === 0 || rect.height === 0) return;
     const scaleX = rect.width / contentW;
     const scaleY = rect.height / contentH;
-    const newZoom = Math.min(scaleX, scaleY, 1) * 0.85;
+    const newZoom = Math.min(Math.max(Math.min(scaleX, scaleY, 1) * 0.85, MIN_ZOOM), MAX_ZOOM);
     const centerX = (rect.width - contentW * newZoom) / 2 - minX * newZoom + 100 * newZoom;
     const centerY = (rect.height - contentH * newZoom) / 2 - minY * newZoom + 100 * newZoom;
     setZoom(newZoom);
