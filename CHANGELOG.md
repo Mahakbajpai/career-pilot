@@ -1,3 +1,16 @@
+# [1.82.0](https://github.com/anurag3407/career-pilot/compare/v1.81.1...v1.82.0) (2026-05-29)
+
+
+### Bug Fixes
+
+* close mobile sidebar after navigation ([e5f11c7](https://github.com/anurag3407/career-pilot/commit/e5f11c736d18c9ea8c892e09b6435a06be549647))
+* improve authentication configuration error message ([f830995](https://github.com/anurag3407/career-pilot/commit/f8309953f112b204bf08916e21cd8071e08f48a6))
+
+
+### Features
+
+* add recently viewed jobs tracking ([b3ffe0f](https://github.com/anurag3407/career-pilot/commit/b3ffe0f5879d77fc2051cd7e7b24380080dd824a))
+
 ## [1.81.1](https://github.com/anurag3407/career-pilot/compare/v1.81.0...v1.81.1) (2026-05-29)
 
 
