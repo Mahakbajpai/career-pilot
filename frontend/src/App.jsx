@@ -20,14 +20,47 @@ import Home from './pages/Home';
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const JobSearch = lazy(() => import('./pages/JobSearch'));
 const ResumeBuilder = lazy(() => import('./pages/ResumeBuilder'));
+const TextToResume = lazy(() => import("./pages/TextToResume"));
 // import TextToResume from './pages/TextToResume';
-// import About from './components/portfolio/templates/Tech_Startup/About';
-// import ChatbotPortfolio from "./components/portfolio/templates/Chatbot_Portfolio";
-// import GamifiedXP from "./components/portfolio/templates/Gamified_XP";
+import About from './components/portfolio/templates/Tech_Startup/About';
+import ChatbotPortfolio from "./components/portfolio/templates/Chatbot_Portfolio";
+import GamifiedXP from "./components/portfolio/templates/Gamified_XP";
 import TelescopeZoom from "./components/portfolio/templates/Telescope_Zoom";
 
+const JobTracker = lazy(() => import("./pages/JobTracker"));
 // import JobTracker from './pages/JobTracker';
 const Community = lazy(() => import('./pages/Community'));
+const Login = lazy(() => import("./pages/Login"));
+const Register = lazy(() => import("./pages/Register"));
+const LinkedInCallback = lazy(() => import("./pages/LinkedInCallback"));
+const OpenRouterCallback = lazy(() => import("./pages/OpenRouterCallback"));
+const Upload = lazy(() => import("./pages/Upload"));
+const Enhance = lazy(() => import("./pages/Enhance"));
+const ResumeView = lazy(() => import("./pages/ResumeView"));
+const JobAlerts = lazy(() => import("./pages/JobAlerts"));
+const InterviewPrep = lazy(() => import("./pages/InterviewPrep"));
+const UserProfile = lazy(() => import("./pages/UserProfile"));
+const SecuritySettings = lazy(() => import("./pages/SecuritySettings"));
+const EmailGenerator = lazy(() => import("./pages/EmailGenerator"));
+const LinkedInOptimizer = lazy(() => import("./pages/LinkedInOptimizer"));
+const Settings = lazy(() => import("./pages/Settings"));
+const ResumeHub = lazy(() => import("./pages/hubs/ResumeHub"));
+const JobsHub = lazy(() => import("./pages/hubs/JobsHub"));
+const PortfolioHub = lazy(() => import("./pages/hubs/PortfolioHub"));
+const CareerGrowthHub = lazy(() => import("./pages/hubs/CareerGrowthHub"));
+const CommunityHub = lazy(() => import("./pages/hubs/CommunityHub"));
+const FellowshipLayout = lazy(() => import("./pages/fellowship/FellowshipLayout"));
+const Challenges = lazy(() => import("./pages/fellowship/Challenges"));
+const Onboarding = lazy(() => import("./pages/fellowship/Onboarding"));
+const ChallengeDetail = lazy(() => import("./pages/fellowship/ChallengeDetail"));
+const ChallengeProposals = lazy(() => import("./pages/fellowship/ChallengeProposals"));
+const CreateChallenge = lazy(() => import("./pages/fellowship/CreateChallenge"));
+const MyProposals = lazy(() => import("./pages/fellowship/MyProposals"));
+const MyChallenges = lazy(() => import("./pages/fellowship/MyChallenges"));
+const Verify = lazy(() => import("./pages/fellowship/Verify"));
+const FellowshipMessages = lazy(() => import("./pages/fellowship/FellowshipMessages"));
+const FellowshipChat = lazy(() => import("./pages/fellowship/FellowshipChat"));
+
 import { NotFound } from './pages';
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
@@ -45,6 +78,17 @@ import NorthernFjords from './components/portfolio/templates/Northern_Fjords';
 import RainforestCanopy from './components/portfolio/templates/Rainforest_Canopy/index.jsx';
 import TestSocialLinks from './pages/TestSocialLinks';
 
+
+function LoadingScreen({ label = "Loading..." }) {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="flex flex-col items-center gap-4">
+        <div className="w-12 h-12 border-4 border-muted border-t-primary rounded-full animate-spin"></div>
+        <p className="text-muted-foreground font-medium">{label}</p>
+      </div>
+    </div>
+  );
+}
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
 
@@ -157,7 +201,7 @@ function AppRoutes() {
 
         <Route path="/templates/chatbot" element={<ChatbotPortfolio />} />
 
-        <Route path="/templates/day-night-cycle" element={<DayNightCycle />} />
+        {/* <Route path="/templates/day-night-cycle" element={<DayNightCycle />} /> */}
         <Route path="/templates/rainforest-canopy" element={<RainforestCanopy />} />
         <Route path="/templates/northern-fjords" element={<NorthernFjords />} />
         {/* Core Protected Routes */}
