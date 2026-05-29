@@ -1,3 +1,11 @@
+# [1.83.0](https://github.com/anurag3407/career-pilot/compare/v1.82.1...v1.83.0) (2026-05-29)
+
+
+### Features
+
+* **portfolio:** Add complete Candy Pop portfolio template [#1930](https://github.com/anurag3407/career-pilot/issues/1930) ([531d531](https://github.com/anurag3407/career-pilot/commit/531d531dc3df055028610ae905d63233a9d32b68))
+* **portfolio:** implement Apple Showcase portfolio template ([6b56943](https://github.com/anurag3407/career-pilot/commit/6b569431ffbc6e10ce81403d185af64ac4dcd3bf))
+
 ## [1.82.1](https://github.com/anurag3407/career-pilot/compare/v1.82.0...v1.82.1) (2026-05-29)
 
 

@@ -480,6 +480,8 @@ export default function TemplateGallery() {
         </div>
         <div className="overflow-hidden rounded-2xl border border-border">
           <MidnightGradient />
+        </div>
+      </div>
 
       {/* Playing Cards Theme */}
       <div className="mt-12">
