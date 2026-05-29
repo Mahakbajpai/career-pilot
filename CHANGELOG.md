@@ -1,3 +1,10 @@
+# [1.94.0](https://github.com/anurag3407/career-pilot/compare/v1.93.0...v1.94.0) (2026-05-29)
+
+
+### Features
+
+* add premium Split Personality portfolio template ([ed0069b](https://github.com/anurag3407/career-pilot/commit/ed0069bb470d7f4f4954dd1ab606ec9c698ab43e))
+
 # [1.93.0](https://github.com/anurag3407/career-pilot/compare/v1.92.1...v1.93.0) (2026-05-29)
 
 
