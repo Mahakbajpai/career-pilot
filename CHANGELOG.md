@@ -1,3 +1,123 @@
+# [1.123.0](https://github.com/anurag3407/career-pilot/compare/v1.122.0...v1.123.0) (2026-06-01)
+
+
+### Bug Fixes
+
+* update author to Advik Divekar in templates.js ([134dd00](https://github.com/anurag3407/career-pilot/commit/134dd00306b32fc76ce5d27aa6ac4f54ce015209))
+
+
+### Features
+
+* implement Duotone Bold portfolio template ([#1933](https://github.com/anurag3407/career-pilot/issues/1933)) ([e740cf7](https://github.com/anurag3407/career-pilot/commit/e740cf7f359885943a0139d85db9f7f28cdc04a0))
+
+# [1.122.0](https://github.com/anurag3407/career-pilot/compare/v1.121.0...v1.122.0) (2026-06-01)
+
+
+### Bug Fixes
+
+* update author to Advik Divekar in templates.js ([5d248bd](https://github.com/anurag3407/career-pilot/commit/5d248bd5fbe658a1b56db73a987c8cf670ce7203))
+
+
+### Features
+
+* implement Sunset Warm portfolio template ([#1931](https://github.com/anurag3407/career-pilot/issues/1931)) ([b0b5442](https://github.com/anurag3407/career-pilot/commit/b0b54424a8eb69e6107114e7a23bce755e3182f0))
+
+# [1.121.0](https://github.com/anurag3407/career-pilot/compare/v1.120.0...v1.121.0) (2026-06-01)
+
+
+### Bug Fixes
+
+* add missing imports to TemplateGallery so /templates route works in production ([9019376](https://github.com/anurag3407/career-pilot/commit/90193762bb0b2c8863246b7829cfb1fc18954ca1))
+* guard against missing personal.email/phone/resumeUrl fields in upstream dummy_data ([adbc272](https://github.com/anurag3407/career-pilot/commit/adbc272b971169758c18f6c150235ca2df4062bd))
+* isolate template navbars inside scroll containers to prevent overlap with page navbar ([a9b7546](https://github.com/anurag3407/career-pilot/commit/a9b75462bd76535ce0dc4d7cb54dd0cd7a3f3d9e))
+* use CSS transform to contain template fixed navbars inside preview frames ([80be395](https://github.com/anurag3407/career-pilot/commit/80be395c2c7fb21a9ce3d301128f59fd0e29df63))
+
+
+### Features
+
+* add site-wide Navbar to TemplateGallery for full project navigation ([6d88270](https://github.com/anurag3407/career-pilot/commit/6d882706f0bd111e6b672525f8d327415dfd63c7))
+* implement Desert Dunes portfolio template ([#1952](https://github.com/anurag3407/career-pilot/issues/1952)) ([d049a52](https://github.com/anurag3407/career-pilot/commit/d049a522e8bfc7d6dced4d3df12be9ca19f1ca49))
+* restore all portfolio template previews in TemplateGallery alongside Desert Dunes ([8906242](https://github.com/anurag3407/career-pilot/commit/8906242a0018ef6156911a07aa73ec84ca732710))
+
+# [1.120.0](https://github.com/anurag3407/career-pilot/compare/v1.119.0...v1.120.0) (2026-06-01)
+
+
+### Bug Fixes
+
+* update author to Advik Divekar in templates.js ([b8b4699](https://github.com/anurag3407/career-pilot/commit/b8b4699bd234bc1385500cab1e7ca2d08ed797a3))
+
+
+### Features
+
+* implement Rainbow Gradient portfolio template ([#1929](https://github.com/anurag3407/career-pilot/issues/1929)) ([d963800](https://github.com/anurag3407/career-pilot/commit/d9638001e672e2c918aa4bc003b509650f2ca70a))
+
+# [1.119.0](https://github.com/anurag3407/career-pilot/compare/v1.118.0...v1.119.0) (2026-06-01)
+
+
+### Bug Fixes
+
+* update author to Advik Divekar in templates.js ([4441a6e](https://github.com/anurag3407/career-pilot/commit/4441a6e5c8222d3eb503306b52baa2390c0849b6))
+
+
+### Features
+
+* implement Smoke Mist portfolio template ([#1928](https://github.com/anurag3407/career-pilot/issues/1928)) ([0780313](https://github.com/anurag3407/career-pilot/commit/0780313a5c5146de76be6171d9fb8bda79519131))
+
+# [1.118.0](https://github.com/anurag3407/career-pilot/compare/v1.117.0...v1.118.0) (2026-06-01)
+
+
+### Bug Fixes
+
+* update author to Advik Divekar in templates.js ([a03ee64](https://github.com/anurag3407/career-pilot/commit/a03ee6442d0a7db0f9f277c71bf2b43227ee2f1a))
+
+
+### Features
+
+* implement Twilight Horizon portfolio template ([#1925](https://github.com/anurag3407/career-pilot/issues/1925)) ([ed83bcb](https://github.com/anurag3407/career-pilot/commit/ed83bcb8966ceb0785074cb580fbaddc4c72536d))
+
+# [1.117.0](https://github.com/anurag3407/career-pilot/compare/v1.116.0...v1.117.0) (2026-06-01)
+
+
+### Bug Fixes
+
+* update author to Advik Divekar in templates.js ([22ec4ca](https://github.com/anurag3407/career-pilot/commit/22ec4cacc5394d2bec67b4085020b0a899a274a5))
+
+
+### Features
+
+* implement One Page Scroll portfolio template ([#1918](https://github.com/anurag3407/career-pilot/issues/1918)) ([306c172](https://github.com/anurag3407/career-pilot/commit/306c17216f70e9ee35d57961ed19956318e5f4b9)), closes [#2563](https://github.com/anurag3407/career-pilot/issues/2563)
+
+# [1.116.0](https://github.com/anurag3407/career-pilot/compare/v1.115.0...v1.116.0) (2026-06-01)
+
+
+### Bug Fixes
+
+* update author to Advik Divekar in templates.js ([6e6fde0](https://github.com/anurag3407/career-pilot/commit/6e6fde0a4206b7e7d2d99f8fc51062fb2fc34210))
+
+
+### Features
+
+* implement Typewriter Effect portfolio template ([#1893](https://github.com/anurag3407/career-pilot/issues/1893)) ([c8ee815](https://github.com/anurag3407/career-pilot/commit/c8ee815bd03e6e26eb731b8371e5b1460d4de324)), closes [#F5F0E8](https://github.com/anurag3407/career-pilot/issues/F5F0E8)
+
+# [1.115.0](https://github.com/anurag3407/career-pilot/compare/v1.114.0...v1.115.0) (2026-06-01)
+
+
+### Bug Fixes
+
+* update author to Advik Divekar in templates.js ([1e79b42](https://github.com/anurag3407/career-pilot/commit/1e79b42ad7289653dd1aee2c2e67867452f15e2b))
+
+
+### Features
+
+* implement Morphing Blobs portfolio template ([#1892](https://github.com/anurag3407/career-pilot/issues/1892)) ([8e9bc7f](https://github.com/anurag3407/career-pilot/commit/8e9bc7f88a7402e2ca285aba426009ef339279c7))
+
+# [1.114.0](https://github.com/anurag3407/career-pilot/compare/v1.113.0...v1.114.0) (2026-06-01)
+
+
+### Features
+
+* add standalone portfolio renderer with template support ([a147683](https://github.com/anurag3407/career-pilot/commit/a147683029c9742df03a8feeb12fe4d9b48b2bc0))
+
 # [1.113.0](https://github.com/anurag3407/career-pilot/compare/v1.112.0...v1.113.0) (2026-06-01)
 
 
