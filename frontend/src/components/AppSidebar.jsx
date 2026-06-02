@@ -57,6 +57,11 @@ const navLinks = [
         icon: <Globe className="w-5 h-5 shrink-0" />,
     },
     {
+        label: "Project Visualizer",
+        href: "/project-visualizer",
+        icon: <GitMerge className="w-5 h-5 shrink-0" />,
+    },
+    {
         label: "Career Growth",
         href: "/hub/career",
         icon: <GraduationCap className="w-5 h-5 shrink-0" />,
@@ -137,10 +142,10 @@ function UserSection() {
         const verifier = generateRandomString();
         sessionStorage.setItem('or_code_verifier', verifier);
         const challenge = await generateCodeChallenge(verifier);
-        
+
         const callbackUrl = `${window.location.origin}/auth/openrouter/callback`;
         const openRouterUrl = `https://openrouter.ai/auth?callback_url=${encodeURIComponent(callbackUrl)}&code_challenge=${challenge}&code_challenge_method=S256`;
-        
+
         window.location.href = openRouterUrl;
     };
 
@@ -327,11 +332,11 @@ useEffect(() => {
             }}
             onClick={() => setOpen(false)}
         />
-        
+
         <SidebarLink
             link={{
-                label: "Repo Analyzer",
-                href: "/repo-analyzer",
+                label: "Project Visualizer",
+                href: "/project-visualizer",
                 icon: <GitMerge className="w-4 h-4 shrink-0" />,
             }}
             onClick={() => setOpen(false)}
