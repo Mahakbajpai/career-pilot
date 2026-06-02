@@ -21,7 +21,8 @@ import Navbar from '../components/Navbar'
 import { X } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 // import Hero from "../components/portfolio/templates/Holographic/Hero";
-// import ChooseAdventurePortfolio from "../components/portfolio/templates/Choose_Adventure/index";
+import ChooseAdventurePortfolio from "../components/portfolio/templates/Choose_Adventure/index";
+import WeatherMood from "../components/portfolio/templates/Weather_Mood/index";
 // import RetroProjects from "../components/portfolio/templates/2D_Retro_8bit/Projects";
 // import FantasyRPGProjects from "../components/portfolio/templates/Fantasy_RPG/Projects";
 import MorphingBlobs from "../components/portfolio/templates/Morphing_Blobs/index";
@@ -348,11 +349,6 @@ const [hoveredCard, setHoveredCard] = useState(null);
   });
 
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
-      <Navbar />
-      <div className="p-8 pt-24">
-      <div className="flex items-center mb-8">
-        <h1 className="text-4xl font-bold">Template Gallery</h1>
     <div className="min-h-screen bg-background text-foreground p-8 pt-24 transition-colors duration-300">
       <Navbar />
       
@@ -532,44 +528,31 @@ const [hoveredCard, setHoveredCard] = useState(null);
         <div className="overflow-hidden rounded-2xl border border-cyan-500/20"><TechStartupHero /></div>
       </div>
 
-      {/* Full-template previews — each has its own fixed/sticky navbar.
-          TemplatePreviewFrame creates an isolated scroll container so
-          that navbar stays inside the preview box and never bleeds out. */}
-      <TemplatePreviewFrame
-        label="Choose Adventure Theme — Full Interactive Template"
-        badgeColor="bg-violet-500/20 text-violet-400 border-violet-500/30"
-      >
-        <ChooseAdventurePortfolio />
-      </TemplatePreviewFrame>
-
-      <TemplatePreviewFrame
-        label="Weather Mood Theme — Full Interactive Template"
-        badgeColor="bg-sky-500/20 text-sky-400 border-sky-500/30"
-      >
-        <WeatherMood />
-      </TemplatePreviewFrame>
-
-      <TemplatePreviewFrame
-        label="Swiss Typography — Full Interactive Template"
-        badgeColor="bg-red-500/20 text-red-400 border-red-500/30"
-      >
-        <SwissTypography />
-      </TemplatePreviewFrame>
-
-      <TemplatePreviewFrame
-        label="Desert Dunes — Nature / Organic Template"
-        badgeColor="bg-amber-500/20 text-amber-400 border-amber-500/30"
-      >
-        <DesertDunes />
-      </TemplatePreviewFrame>
-      </div>
-          <span className="rounded-full bg-red-500/20 px-3 py-1 text-xs font-bold uppercase tracking-widest text-red-400 border border-red-500/30">
-            Preview
+      {/* Choose Adventure Theme */}
+      <div className="mt-12">
+        <div className="mb-4 flex items-center gap-3 px-1">
+          <span className="rounded-full bg-violet-500/20 px-3 py-1 text-xs font-bold uppercase tracking-widest text-violet-400 border border-violet-500/30">
+            ⚔ Choose Adventure
           </span>
-          <h2 className="text-lg font-semibold text-foreground/70">Swiss Typography — Full Interactive Template</h2>
+          <h2 className="text-lg font-semibold text-foreground/70">Choose Adventure — Full Interactive Template</h2>
         </div>
-        <div className="overflow-hidden rounded-2xl border border-border">
-          <SwissTypography portfolioData={aiDraft} />
+        <div className="rounded-2xl border border-violet-500/20"
+          style={{ height: 640, overflowY: "auto", overflowX: "hidden", transform: "translate(0)", position: "relative" }}>
+          <ChooseAdventurePortfolio />
+        </div>
+      </div>
+
+      {/* Weather Mood Theme */}
+      <div className="mt-12">
+        <div className="mb-4 flex items-center gap-3 px-1">
+          <span className="rounded-full bg-sky-500/20 px-3 py-1 text-xs font-bold uppercase tracking-widest text-sky-400 border border-sky-500/30">
+            ☁ Weather Mood
+          </span>
+          <h2 className="text-lg font-semibold text-foreground/70">Weather Mood — Full Interactive Template</h2>
+        </div>
+        <div className="rounded-2xl border border-sky-500/20"
+          style={{ height: 640, overflowY: "auto", overflowX: "hidden", transform: "translate(0)", position: "relative" }}>
+          <WeatherMood />
         </div>
       </div>
       {/* Psychedelic Swirl Theme */}
@@ -748,6 +731,9 @@ const [hoveredCard, setHoveredCard] = useState(null);
         </div>
       </div>
 
+        </div>
+      </div>
     </div>
+  </div>
   );
 }
