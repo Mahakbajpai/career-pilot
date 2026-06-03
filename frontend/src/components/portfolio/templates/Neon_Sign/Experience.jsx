@@ -4,8 +4,8 @@ import { Briefcase, Calendar, Building2 } from "lucide-react";
 
 const TIMELINE_COLORS = ["#ff2bd6", "#00d4ff", "#ffd000", "#b026ff"];
 
-export default function Experience({ data }) {
-  const { experience } = data;
+export default function Experience({ data = {} }) {
+  const { experience = [] } = data;
 
   return (
     <section id="experience" className="relative py-20 px-4 md:px-8 overflow-hidden">
@@ -76,7 +76,7 @@ export default function Experience({ data }) {
                   }`}
                 >
                   {/* Content Card (takes up half width on desktop) */}
-                  <div className={`pl-14 md:pl-0 md:w-[calc(50%-32px)] ${isLeft ? "md:pr-10" : "md:pl-10"}`}>
+                  <div className={`pl-14 md:pl-0 md:w-[calc(50%_-_2rem)] ${isLeft ? "md:pr-10" : "md:pl-10"}`}>
                     <div
                       className="group rounded-2xl border-2 p-5 md:p-6 relative overflow-hidden cursor-default transition-all duration-500"
                       style={{
