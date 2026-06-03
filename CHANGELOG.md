@@ -1,3 +1,11 @@
+# [1.132.0](https://github.com/anurag3407/career-pilot/compare/v1.131.0...v1.132.0) (2026-06-03)
+
+
+### Features
+
+* implement rocket launch hero section ([69cf0e4](https://github.com/anurag3407/career-pilot/commit/69cf0e4c7c9a4a03307e12c70ae106b1c1a1f8bd))
+* **scifi-hud:** simplify Contact heading and wire JSON data ([91388d3](https://github.com/anurag3407/career-pilot/commit/91388d3191f203fee7dede1d938d7af5b317c167))
+
 # [1.131.0](https://github.com/anurag3407/career-pilot/compare/v1.130.0...v1.131.0) (2026-06-03)
 
 
