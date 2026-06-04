@@ -1,3 +1,15 @@
+# [1.141.0](https://github.com/anurag3407/career-pilot/compare/v1.140.0...v1.141.0) (2026-06-04)
+
+
+### Bug Fixes
+
+* resolve TemplateGallery preview rendering ([02ebbfc](https://github.com/anurag3407/career-pilot/commit/02ebbfc1b57ef786f6080b7999a96be435956f5e))
+
+
+### Features
+
+* add communication and confidence analysis dashboard ([7e86bd2](https://github.com/anurag3407/career-pilot/commit/7e86bd2bc12b74f9a91a669a1254fadcdda2c704))
+
 # [1.140.0](https://github.com/anurag3407/career-pilot/compare/v1.139.0...v1.140.0) (2026-06-04)
 
 
