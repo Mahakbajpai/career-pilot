@@ -1,3 +1,10 @@
+# [1.156.0](https://github.com/anurag3407/career-pilot/compare/v1.155.0...v1.156.0) (2026-06-05)
+
+
+### Features
+
+* add Wildflower Field portfolio template ([67bc2d8](https://github.com/anurag3407/career-pilot/commit/67bc2d8f58bfaade6e192c3a9f6b428e681e6cf2))
+
 # [1.155.0](https://github.com/anurag3407/career-pilot/compare/v1.154.0...v1.155.0) (2026-06-05)
 
 
