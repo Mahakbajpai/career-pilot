@@ -19,7 +19,7 @@ import { auth } from "../config/firebase";
 import Button from "../components/Button";
 import Card from "../components/Card";
 import CompanyResearch from "../components/CompanyResearch";
-import { SkeletonDashboard } from "../components/ui/Skeleton.jsx";
+import { SkeletonTracker } from "../components/ui/Skeleton";
 import {
   calculateJobStats,
   getQueuedStatusUpdates,
@@ -104,7 +104,7 @@ const JobTracker = () => {
     );
   };
 
-  const useCachedTrackerData = () => {
+  const loadCachedTrackerData = () => {
     const snapshot = loadJobTrackerSnapshot(currentUserId);
     if (!snapshot) return false;
 
@@ -131,7 +131,7 @@ const JobTracker = () => {
       setIsOffline(false);
     } catch (error) {
       console.error("Error fetching jobs:", error);
-      const hasCachedData = useCachedTrackerData();
+      const hasCachedData = loadCachedTrackerData();
       if (hasCachedData) {
         setIsOffline(true);
         toast("Showing saved Job Tracker data while offline", {
@@ -344,11 +344,7 @@ const JobTracker = () => {
   if (loading) {
     return (
       <Layout>
-        <div className="min-h-screen bg-background py-8 px-4">
-          <div className="max-w-7xl mx-auto">
-            <SkeletonDashboard />
-          </div>
-        </div>
+        <SkeletonTracker />
       </Layout>
     );
   }
