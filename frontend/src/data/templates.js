@@ -53,18 +53,31 @@ export const templates = [
     "isComplete": true
   },
   {
-  "id": "Vercel_Deploy",
-  "title": "Vercel Deploy",
-  "category": "Portfolio",
-  "colorScheme": "Dark",
-  "layout": "Cards",
-  "author": "Your GitHub Username",
-  "views": 1200,
-  "rating": 4.8,
-  "image": "/template-previews/Vercel_Deploy.png",
-  "createdAt": "2026-06-05",
-  "isComplete": true
-},
+    "id": "Audio_First_Sonar_Navigation",
+    "title": "Audio First Sonar Navigation",
+    "category": "Portfolio",
+    "colorScheme": "Dark",
+    "layout": "Cards",
+    "author": "System",
+    "views": 0,
+    "rating": 0,
+    "image": "/template-previews/Audio_First_Sonar_Navigation.png",
+    "createdAt": "2026-06-07",
+    "isComplete": true
+  },
+  {
+    "id": "Vercel_Deploy",
+    "title": "Vercel Deploy",
+    "category": "Portfolio",
+    "colorScheme": "Dark",
+    "layout": "Cards",
+    "author": "Your GitHub Username",
+    "views": 1200,
+    "rating": 4.8,
+    "image": "/template-previews/Vercel_Deploy.png",
+    "createdAt": "2026-06-05",
+    "isComplete": true
+  },
   {
     "id": "2D_Retro_8bit",
     "title": "2D Retro 8bit",
