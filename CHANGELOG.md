@@ -1,3 +1,11 @@
+## [1.197.1](https://github.com/anurag3407/career-pilot/compare/v1.197.0...v1.197.1) (2026-06-08)
+
+
+### Bug Fixes
+
+* enable upgrade insecure requests only in production ([51728ff](https://github.com/anurag3407/career-pilot/commit/51728fff2c187d2fe54397c8998041e0f9c2af01))
+* resolve CSP middleware merge conflict ([e85ed6d](https://github.com/anurag3407/career-pilot/commit/e85ed6df17fc2ac272ee73c5229fc42d13b26515))
+
 # [1.197.0](https://github.com/anurag3407/career-pilot/compare/v1.196.0...v1.197.0) (2026-06-08)
 
 
