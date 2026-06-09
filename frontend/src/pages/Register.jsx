@@ -28,10 +28,10 @@ export default function Register() {
 
   const validate = () => {
     const newErrors = {}
-    if (!formData.name) {
+    if (!formData.name.trim()) {
       newErrors.name = 'Name is required'
-    } else if (!/^[a-zA-Z\s]+$/.test(formData.name)) {
-      newErrors.name = 'Name can only contain letters and spaces'
+    } else if (!/^[\p{L}\s'\-.]+$/u.test(formData.name.trim())) {
+      newErrors.name = 'Name can only contain letters, spaces, hyphens, or apostrophes'
     }
     if (!formData.email) newErrors.email = 'Email is required'
     if (!formData.password) {
