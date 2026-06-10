@@ -164,19 +164,48 @@ export default function ResumeBuilder() {
       resumeText.includes(keyword.toLowerCase())
     )
 
-    const missing = keywords.filter(
-      keyword => !foundKeywords.includes(keyword)
+  setAtsScore(
+    Math.round(
+      (foundKeywords.length / keywords.length) * 100
     )
+  )
+}, [
+  personal,
+  skills,
+  projects,
+  experience,
+  keywords,
+  foundKeywords.length
+])
 
-    setMissingKeywords(missing)
-    setRecommendedSkills(missing.slice(0, 4))
+// ─────────────────── CONSOLIDATED ATS ASSESSMENT LOOP ───────────────────
+useEffect(() => {
+  // 1. Gather all inputs into a clean string representation
+  const resumeText = `${personal?.summary || ''} ${skills?.join(' ') || ''} ${
+    projects?.map(p => `${p.title} ${p.description}`).join(' ') || ''
+  } ${experience?.map(e => `${e.role} ${e.description}`).join(' ') || ''}`.toLowerCase();
 
-    if (keywords.length > 0) {
-      setAtsScore(
-        Math.round((foundKeywords.length / keywords.length) * 100)
-      )
-    }
-  }, [personal, skills, projects, experience])
+  // 2. Define assessment target keywords (moved to component/effect scope correctly)
+  const baseKeywords = ["react", "node.js", "javascript", "typescript", "python", "docker", "aws", "git", "ci/cd", "rest api"];
+  const prioritySkills = ["docker", "kubernetes", "ci/cd", "aws", "linux"];
+
+  const found = baseKeywords.filter(keyword => resumeText.includes(keyword));
+  const missing = baseKeywords.filter(keyword => !resumeText.includes(keyword));
+
+  // 3. State update calculations
+  setMissingKeywords(missing);
+  
+  // Prioritize missing crucial devops/infrastructure skills first in recommendation
+  const recommendations = [
+    ...prioritySkills.filter(sk => !found.includes(sk)),
+    ...missing
+  ].slice(0, 4);
+  setRecommendedSkills(recommendations);
+
+  const score = baseKeywords.length > 0 ? Math.round((found.length / baseKeywords.length) * 100) : 0;
+  setAtsScore(score);
+
+}, [personal, skills, projects, experience]); // Removed out-of-scope internal variables!
 
   // ─────────────────── Live Consistency Memoized Engine ───────────────────
   const activeConsistencyWarnings = React.useMemo(() => {
@@ -421,6 +450,21 @@ useEffect(() => {
     return md
   }
 
+  const restoreVersion = (version) => {
+    setSelectedVersion(version)
+    toast.success(`Restored version from ${version.timestamp}`)
+  }
+
+  const saveVersion = React.useCallback(() => {
+    const newVersion = {
+      id: Date.now(),
+      timestamp: new Date().toLocaleString(),
+      content: generateMarkdown(),
+    };
+    setResumeVersions(prev => [newVersion, ...prev]);
+    toast.success("Resume version layout tracked successfully!");
+  }, [experience, education, projects, personal, skills, generateMarkdown]);
+
   const handleGenerate = async () => {
     try {
       setIsSubmitting(true)
@@ -443,14 +487,14 @@ useEffect(() => {
   // ── shared input class builder ────────────────────────────────────────────────
   const inputCls = (errorKey, errors = personalErrors) =>
     cn(
-      'w-full bg-background/50 border rounded-xl px-4 py-2 transition-colors',
+      'w-full bg-muted border rounded-xl px-4 py-2 transition-colors',
       'focus:outline-none focus:ring-2 focus:ring-primary/30',
       errors?.[errorKey] ? 'border-red-500 focus:ring-red-400/30' : 'border-border'
     )
 
   const inputClsArr = (errors) => (errorKey) =>
     cn(
-      'w-full bg-background/50 border rounded-lg px-4 py-2 transition-colors',
+      'w-full bg-muted border rounded-lg px-4 py-2 transition-colors',
       'focus:outline-none focus:ring-2 focus:ring-primary/30',
       errors?.[errorKey] ? 'border-red-500 focus:ring-red-400/30' : 'border-border'
     )
@@ -577,7 +621,7 @@ useEffect(() => {
               <label className="block text-sm font-medium mb-1" htmlFor="summary">Professional Summary</label>
               <textarea
                 id="summary"
-                className="w-full bg-background/50 border border-border rounded-xl px-4 py-2 min-h-[100px] focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors"
+                className="w-full bg-muted border border-border rounded-xl px-4 py-2 min-h-[100px] focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors"
                 value={personal.summary}
                 onChange={e => updatePersonal('summary', e.target.value)}
                 placeholder="A brief summary of your professional background..."
@@ -805,7 +849,7 @@ useEffect(() => {
   </label>
 
   <textarea
-    className="w-full bg-background/50 border border-border rounded-lg px-4 py-2 min-h-[100px] focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors"
+    className="w-full bg-muted border border-border rounded-lg px-4 py-2 min-h-[100px] focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors"
     value={exp.description}
     onChange={e => updateExp(index, 'description', e.target.value)}
     placeholder={`- Developed feature X resulting in Y% improvement\n- Led a team of...`}
@@ -849,7 +893,7 @@ useEffect(() => {
                     <label className="block text-sm font-medium mb-1">Project Name</label>
                     <input
                       type="text"
-                      className="w-full bg-background/50 border border-border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors"
+                      className="w-full bg-muted border border-border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors"
                       value={proj.name}
                       onChange={e => { const n = [...projects]; n[index].name = e.target.value; setProjects(n) }}
                       placeholder="E-commerce App"
@@ -859,7 +903,7 @@ useEffect(() => {
                     <label className="block text-sm font-medium mb-1">Technologies Used</label>
                     <input
                       type="text"
-                      className="w-full bg-background/50 border border-border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors"
+                      className="w-full bg-muted border border-border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors"
                       value={proj.tech}
                       onChange={e => { const n = [...projects]; n[index].tech = e.target.value; setProjects(n) }}
                       placeholder="React, Node.js, MongoDB"
@@ -869,7 +913,7 @@ useEffect(() => {
                     <label className="block text-sm font-medium mb-1">Link (Optional)</label>
                     <input
                       type="url"
-                      className="w-full bg-background/50 border border-border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors"
+                      className="w-full bg-muted border border-border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors"
                       value={proj.link}
                       onChange={e => { const n = [...projects]; n[index].link = e.target.value; setProjects(n) }}
                       placeholder="https://github.com/..."
@@ -878,7 +922,7 @@ useEffect(() => {
                   <div className="md:col-span-2">
                     <label className="block text-sm font-medium mb-1">Description (Bullet points)</label>
                     <textarea
-                      className="w-full bg-background/50 border border-border rounded-lg px-4 py-2 min-h-[100px] focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors"
+                      className="w-full bg-muted border border-border rounded-lg px-4 py-2 min-h-[100px] focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors"
                       value={proj.description}
                       onChange={e => { const n = [...projects]; n[index].description = e.target.value; setProjects(n) }}
                       placeholder="- Built a full-stack application..."
@@ -902,7 +946,7 @@ useEffect(() => {
               <label className="block text-sm font-medium mb-1" htmlFor="skills">Technical Skills &amp; Competencies</label>
               <textarea
                 id="skills"
-                className="w-full bg-background/50 border border-border rounded-xl px-4 py-2 min-h-[150px] focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors"
+                className="w-full bg-muted border border-border rounded-xl px-4 py-2 min-h-[150px] focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors"
                 value={skills}
                 onChange={e => setSkills(e.target.value)}
                 placeholder={'**Languages:** JavaScript, Python, Java\n**Frameworks:** React, Node.js, Express\n**Tools:** Git, Docker, AWS'}
@@ -927,7 +971,7 @@ useEffect(() => {
   </button>
 </div>
 
-<div className="mb-6 p-4 rounded-xl border border-border bg-background/50">
+<div className="mb-6 p-4 rounded-xl border border-border bg-muted">
 
   <div className="flex justify-between items-center mb-2">
     <h3 className="font-semibold">
@@ -1002,7 +1046,7 @@ useEffect(() => {
 
 </div>
 
-<div className="mb-6 p-4 rounded-xl border border-border bg-background/50">
+<div className="mb-6 p-4 rounded-xl border border-border bg-muted">
   <div className="flex justify-between items-center mb-2">
     <h3 className="font-semibold">
       Achievement Impact Score
@@ -1034,7 +1078,7 @@ useEffect(() => {
     </div>
   )}
 </div>
-<div className="mb-6 p-4 rounded-xl border border-border bg-background/50">
+<div className="mb-6 p-4 rounded-xl border border-border bg-muted">
   <h3 className="font-semibold mb-3">
     Section Completion Status
   </h3>
@@ -1047,7 +1091,7 @@ useEffect(() => {
     <div>{skills.trim() ? "✅" : "❌"} Skills</div>
   </div>
 </div>
-            <div className="mb-6 p-4 rounded-xl border border-border bg-background/50">
+            <div className="mb-6 p-4 rounded-xl border border-border bg-muted">
   <div className="flex justify-between items-center mb-2">
     <h3 className="font-semibold">
       Resume Improvement Progress
@@ -1122,7 +1166,7 @@ useEffect(() => {
   </p>
 </div>
             {recommendedSections.length > 0 && (
-  <div className="mb-6 p-4 rounded-xl border border-border bg-background/50">
+  <div className="mb-6 p-4 rounded-xl border border-border bg-muted">
     <h3 className="font-semibold mb-2">
       Recommended Sections
     </h3>
@@ -1141,7 +1185,7 @@ useEffect(() => {
 )}
 
 {resumeVersions.length > 0 && (
-  <div className="mb-6 p-4 rounded-xl border border-border bg-background/50">
+  <div className="mb-6 p-4 rounded-xl border border-border bg-muted">
     <h3 className="font-semibold mb-3">
       Resume Version History
     </h3>
@@ -1168,7 +1212,7 @@ useEffect(() => {
   </div>
 )}
 
-<div className="mb-6 p-4 rounded-xl border border-border bg-background/50">
+<div className="mb-6 p-4 rounded-xl border border-border bg-muted">
   <div className="flex justify-between items-center mb-2">
     <h3 className="font-semibold">
       Resume Readability Score
@@ -1219,7 +1263,7 @@ useEffect(() => {
 
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
+          <h1 className="text-3xl font-bold text-foreground">
             Resume Builder
           </h1>
           <p className="text-muted-foreground mt-2">Build a professional resume from scratch.</p>
@@ -1254,7 +1298,7 @@ useEffect(() => {
         </div>
 
         {/* Content Area */}
-        <div className="flex-1 bg-card/50 backdrop-blur-xl border border-white/5 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+        <div className="flex-1 bg-card backdrop-blur-xl border border-border rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl opacity-50 pointer-events-none" />
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl opacity-50 pointer-events-none" />
 
@@ -1309,7 +1353,7 @@ useEffect(() => {
           ) : (
             <button
               onClick={handleNext}
-              className="px-6 py-2.5 rounded-full bg-white text-black hover:bg-gray-200 hover:scale-105 active:scale-95 transition-all shadow-lg flex items-center gap-2 font-medium"
+              className="px-6 py-2.5 rounded-full bg-foreground text-background hover:bg-foreground/90 hover:scale-105 active:scale-95 transition-all shadow-lg flex items-center gap-2 font-medium"
             >
               Next <ArrowRight className="w-4 h-4" />
             </button>
