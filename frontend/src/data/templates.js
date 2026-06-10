@@ -2651,5 +2651,18 @@ export const templates = [
     "image": "/template-previews/Digital_Manifesto_Scroll.png",
     "createdAt": "2026-06-07",
     "isComplete": true
+  },
+  {
+    "id": "Cloud_Nine_Aerial_Skyscape",
+    "title": "Cloud Nine Aerial Skyscape",
+    "category": "Portfolio",
+    "colorScheme": "Light",
+    "layout": "Grid",
+    "author": "System",
+    "views": 1000,
+    "rating": 5.0,
+    "image": "/template-previews/Cloud_Nine_Aerial_Skyscape.png",
+    "createdAt": "2026-06-10",
+    "isComplete": true
   }
 ];
