@@ -1,3 +1,10 @@
+# [1.225.0](https://github.com/anurag3407/career-pilot/compare/v1.224.0...v1.225.0) (2026-06-12)
+
+
+### Features
+
+* **portfolio:** implement Origami_Unfold_Step_Animation portfolio template ([71c9ad0](https://github.com/anurag3407/career-pilot/commit/71c9ad03e0842869b14e078726557de05fadafb3))
+
 # 1.0.0 (2026-06-12)
 # [1.224.0](https://github.com/anurag3407/career-pilot/compare/v1.223.0...v1.224.0) (2026-06-12)
 
