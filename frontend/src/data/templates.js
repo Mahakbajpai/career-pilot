@@ -2690,6 +2690,19 @@ export const templates = [
     "image": "/templates/Origami_Unfold_Step_Animation.png",
     "createdAt": "2026-06-12",
     "isComplete": true
+  },
+  {
+    "id": "Commercial_Pilot_Cockpit",
+    "title": "Commercial Pilot Cockpit",
+    "category": "Portfolio",
+    "colorScheme": "Dark",
+    "layout": "Interactive",
+    "author": "System",
+    "views": 2500,
+    "rating": 5.0,
+    "image": "/templates/Commercial_Pilot_Cockpit.png",
+    "createdAt": "2026-06-12",
+    "isComplete": true
   }
 ];
 
