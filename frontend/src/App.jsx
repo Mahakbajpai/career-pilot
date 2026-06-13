@@ -3,12 +3,13 @@
  * Main Application Component with Route-based Code Splitting
  * Implements lazy loading for improved performance
  */
-
+import CoverLetter from "./pages/CoverLetter";
 import VercelDeploy from "./components/portfolio/templates/Vercel_Deploy/index";
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import StockTicker from "./components/portfolio/templates/Finance_Corporate/StockTicker";
 import Deployments from './pages/Deployments'
 import TemplateGallery from "./pages/TemplateGallery";
+import TemplatePreviewOnly from "./pages/TemplatePreviewOnly";
 
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
@@ -115,6 +116,10 @@ import TypographicWheatpastePosterWall from './components/portfolio/templates/Ty
 import DigitalManifestoScroll from './components/portfolio/templates/Digital_Manifesto_Scroll/index.jsx';
 import TestSocialLinks from './pages/TestSocialLinks';
 import ZineCollage from './components/portfolio/templates/ZineCollage';
+import TransparentDesktopOverlayOS from './components/portfolio/templates/Transparent_Desktop_Overlay_OS/index.jsx';
+import Commercial_Pilot_Cockpit from './components/portfolio/templates/Commercial_Pilot_Cockpit/index.jsx';
+import Book_Page_Flip_3D_Render from './components/portfolio/templates/Book_Page_Flip_3D_Render/index.jsx';
+import IKEA_Assembly_Manual from './components/portfolio/templates/IKEA_Assembly_Manual/index.jsx';
 
 function LoadingScreen({ label }) {
   return (
@@ -253,10 +258,12 @@ function AppRoutes() {
 
         {/* Template Gallery Route (Registered at /templates) */}
         <Route path="/templates" element={<TemplateGallery />} />
-
+        <Route path="/preview/:templateId" element={<TemplatePreviewOnly />} />
+        <Route path="/cover-letter" element={<CoverLetter />} />
         
 
                {/* <Route path="/templates/day-night-cycle" element={<DayNightCycle />} /> */}
+
         <Route path="/templates/rainforest-canopy" element={<RainforestCanopy />} />
         <Route path="/templates/northern-fjords" element={<NorthernFjords />} />
         <Route path="/templates/duotone-bold" element={<DuotoneBold />} />
@@ -280,6 +287,10 @@ function AppRoutes() {
         <Route path="/templates/zine-collage" element={<ZineCollage />} />
         <Route path="/templates/chatbot" element={<ChatbotPortfolio />} /> 
         <Route path="/templates/glassmorphism" element={<GlassmorphismTemplate/>} />
+        <Route path="/templates/transparent-desktop-overlay-os" element={<TransparentDesktopOverlayOS />} />
+        <Route path="/templates/commercial-pilot-cockpit" element={<Commercial_Pilot_Cockpit />} />
+        <Route path="/templates/book-page-flip-3d-render" element={<Book_Page_Flip_3D_Render />} />
+        <Route path="/templates/ikea-assembly-manual" element={<IKEA_Assembly_Manual />} />
         {/* Core Protected Routes */}
         <Route 
   path="/dashboard" 
