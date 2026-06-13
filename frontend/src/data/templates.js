@@ -1,5 +1,21 @@
 export const templates = [
+
+{
+  "id": "Virtual_Reality_Room_360",
+  "title": "Virtual Reality Room 360",
+  "category": "Portfolio",
+  "colorScheme": "Dark",
+  "layout": "Interactive",
+  "author": "ShaktiShrey-01",
+  "views": 0,
+  "rating": 0,
+  "image": "/template-previews/Virtual_Reality_Room_360.png",
+  "createdAt": "2026-06-12",
+  "isComplete": true
+},
   {
+    "id": "Forensic_Investigator_Desk",
+    "title": "Forensic Investigator Desk",
     "id": "IKEA_Assembly_Manual",
     "title": "IKEA Assembly Manual",
     "category": "Portfolio",
@@ -20,6 +36,10 @@ export const templates = [
     "author": "ShaktiShrey-01",
     "views": 0,
     "rating": 0,
+    "image": "/template-previews/Forensic_investigator_desk.png", 
+    "createdAt": "2026-06-11",
+    "isComplete": true
+  },
     "image": "/template-previews/Endless_Runner_Minigame.png",
     "createdAt": "2026-06-12",
     isComplete: true
