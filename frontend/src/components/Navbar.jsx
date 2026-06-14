@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { useTheme } from '../hooks/useTheme'
@@ -33,8 +33,53 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  const [showDropdown, setShowDropdown] = useState(false)
+  const [searchDropdownOpen, setSearchDropdownOpen] = useState(false)
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false)
   const [notificationCount] = useState(3)
+
+  const searchRef = useRef(null)
+  const profileRef = useRef(null)
+
+  const openProfile = () => {
+    setSearchDropdownOpen(false)
+    setProfileDropdownOpen(true)
+  }
+
+  const toggleProfileDropdown = () => {
+    setSearchDropdownOpen(false)
+    setProfileDropdownOpen((prev) => !prev)
+  }
+
+  const openSearchDropdown = () => {
+    setProfileDropdownOpen(false)
+    setSearchDropdownOpen(true)
+  }
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setSearchDropdownOpen(false)
+      }
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setProfileDropdownOpen(false)
+      }
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setSearchDropdownOpen(false)
+        setProfileDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleOutsideClick)
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -132,7 +177,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-2">
 
             {/* Search Bar */}
-            <div className="relative">
+            <div ref={searchRef} className="relative">
               <div className="flex items-center bg-muted border border-border rounded-xl px-3 py-2 w-72 focus-within:ring-2 focus-within:ring-primary/40 transition-all">
                 <Search className="w-4 h-4 text-muted-foreground mr-2" />
 
@@ -141,15 +186,15 @@ export default function Navbar() {
                   placeholder="Search anything..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  onFocus={() => setShowDropdown(true)}
-                  onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
+                  onFocus={openSearchDropdown}
+                  onBlur={() => setTimeout(() => setSearchDropdownOpen(false), 200)}
                   className="bg-transparent outline-none text-sm w-full text-foreground placeholder:text-muted-foreground"
                 />
               </div>
 
               {/* Suggestions Dropdown */}
               <AnimatePresence>
-                {showDropdown && (
+                {searchDropdownOpen && (
                   <motion.div
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -241,12 +286,12 @@ export default function Navbar() {
                 </button>
 
                 {/* User Dropdown */}
-                <div className="relative">
+                <div ref={profileRef} className="relative">
                   <button
-                    onClick={() => setShowDropdown(!showDropdown)}
+                    onClick={toggleProfileDropdown}
                     className="flex items-center gap-2 px-3 py-2 bg-muted border border-border rounded-full hover:bg-accent transition-all"
                     aria-label="User menu"
-                    aria-expanded={showDropdown}
+                    aria-expanded={profileDropdownOpen}
                   >
                     <div className="w-8 h-8 rounded-full overflow-hidden bg-primary/20 flex items-center justify-center">
                       <img
@@ -264,7 +309,7 @@ export default function Navbar() {
                   </button>
 
                   <AnimatePresence>
-                    {showDropdown && (
+                    {profileDropdownOpen && (
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
